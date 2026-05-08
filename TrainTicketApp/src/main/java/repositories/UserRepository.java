@@ -1,10 +1,12 @@
 package repositories;
 
+import domain.Train;
 import domain.User;
 import exceptions.RepositoryException;
 import org.hibernate.Session;
 import utils.HibernateUtils;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserRepository implements UserRepositoryInterface {
@@ -25,6 +27,16 @@ public class UserRepository implements UserRepositoryInterface {
     }
 
     @Override
+    public List<User> findAllUsersOnTrain(Train train, Date time) {
+        try( Session session= HibernateUtils.getSessionFactory().openSession()) {
+            return session.createQuery("SELECT u FROM Booking b JOIN b.tickets t JOIN User u on u.id=b.userId WHERE b.dayOfTrip=?1 AND t.train=?2", User.class)
+                    .setParameter(1, time)
+                    .setParameter(2, train)
+                    .getResultList();
+        }
+    }
+
+    @Override
     public User findOne(Long aLong) {
         return null;
     }
@@ -40,8 +52,8 @@ public class UserRepository implements UserRepositoryInterface {
     }
 
     @Override
-    public User delete(Long aLong) {
-        return null;
+    public void delete(User entity) {
+
     }
 
     @Override

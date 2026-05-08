@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import utils.HibernateUtils;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TrainRepository implements TrainRepositoryInterface{
 
@@ -23,17 +24,24 @@ public class TrainRepository implements TrainRepositoryInterface{
 
     @Override
     public Train save(Train entity) {
-        return null;
+        HibernateUtils.getSessionFactory().inTransaction(session -> session.persist(entity));
+        return entity;
     }
 
     @Override
-    public Train delete(Long aLong) {
-        return null;
+    public void delete(Train entity) {
+        HibernateUtils.getSessionFactory().inTransaction(session -> session.remove(entity));
     }
 
     @Override
     public Train update(Train entity) {
-        return null;
+        HibernateUtils.getSessionFactory().inTransaction(session -> {
+            if (!Objects.isNull(session.find(Route.class, entity.getId()))) {
+                session.merge(entity);
+                session.flush();
+            }
+        });
+        return entity;
     }
 
     @Override

@@ -1,6 +1,9 @@
 package repositories;
 
 import domain.Booking;
+import domain.Route;
+import domain.Train;
+import org.hibernate.Session;
 import utils.HibernateUtils;
 
 import java.util.List;
@@ -14,7 +17,9 @@ public class BookingRepository implements BookingRepositoryInterface {
 
     @Override
     public List<Booking> findAll() {
-        return List.of();
+        try( Session session= HibernateUtils.getSessionFactory().openSession()) {
+            return session.createQuery("from Booking ", Booking.class).getResultList();
+        }
     }
 
     @Override
@@ -24,12 +29,21 @@ public class BookingRepository implements BookingRepositoryInterface {
     }
 
     @Override
-    public Booking delete(Long aLong) {
-        return null;
+    public void delete(Booking entity) {
+
     }
 
     @Override
     public Booking update(Booking entity) {
         return null;
+    }
+
+    @Override
+    public List<Booking> bookingsOfTrain(Train train) {
+        try( Session session= HibernateUtils.getSessionFactory().openSession()) {
+            return session.createQuery("SELECT b FROM Booking b JOIN b.tickets t WHERE t.train=?1", Booking.class)
+                    .setParameter(1, train)
+                    .getResultList();
+        }
     }
 }

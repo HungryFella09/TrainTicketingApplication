@@ -37,8 +37,7 @@ public class TicketRepository implements TicketRepositoryInterface {
     }
 
     @Override
-    public Ticket delete(Long aLong) {
-        return null;
+    public void delete(Ticket entity) {
     }
 
     @Override

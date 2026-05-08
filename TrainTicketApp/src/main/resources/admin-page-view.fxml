@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="559.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminPageController">
+
+    <TableView fx:id="tableTrains" layoutX="29.0" layoutY="42.0" prefHeight="181.0" prefWidth="274.0">
+        <columns>
+            <TableColumn fx:id="tableTrainsIdColumn" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="tableTrainsNameColumn" prefWidth="78.39999389648438" text="Name" />
+            <TableColumn fx:id="tableTrainsNumberOfSeatsColumn" prefWidth="101.59999084472656" text="NumberOfSeats" />
+        </columns>
+    </TableView>
+   <TextField fx:id="numberOfSeatsTrainInput" layoutX="445.0" layoutY="110.0" />
+
+    <Label layoutX="333.0" layoutY="114.0" text="Number of Seats:" />
+   <Label layoutX="333.0" layoutY="78.0" prefHeight="18.0" prefWidth="92.0" text="Name:" />
+   <Label layoutX="333.0" layoutY="46.0" text="Id:" />
+
+    <TextField fx:id="nameTrainInput" layoutX="446.0" layoutY="75.0" />
+   <TextField fx:id="idTrainInput" layoutX="446.0" layoutY="42.0" />
+
+    <Button layoutX="320.0" layoutY="155.0" mnemonicParsing="false" onAction="#onAddTrain" text="Add Train" />
+   <Button layoutX="402.0" layoutY="155.0" mnemonicParsing="false" onAction="#onUpdateTrain" text="Update Train" />
+   <Button layoutX="505.0" layoutY="155.0" mnemonicParsing="false" onAction="#onRemoveTrain" text="Remove Train" />
+
+    <Label layoutX="38.0" layoutY="14.0" text="Trains:" />
+    <TableView fx:id="tableBookings" layoutX="616.0" layoutY="42.0" prefHeight="182.0" prefWidth="195.0">
+     <columns>
+       <TableColumn fx:id="tableBookingsIdColumn" prefWidth="49.199951171875" text="Id" />
+       <TableColumn fx:id="tableBookingsUserIdColumn" prefWidth="62.79998779296875" text="UserId" />
+         <TableColumn fx:id="tableBookingsPriceColumn" prefWidth="70.99993896484375" text="Price" />
+     </columns>
+   </TableView>
+
+    <Label layoutX="625.0" layoutY="14.0" text="Bookings:" />
+
+    <TableView fx:id="tableRoutes" layoutX="29.0" layoutY="284.0" prefHeight="252.0" prefWidth="200.0">
+     <columns>
+       <TableColumn fx:id="tableRoutesIdColumn" prefWidth="75.0" text="Id" />
+       <TableColumn fx:id="tableRoutesNameColumn" prefWidth="111.1999740600586" text="Name" />
+     </columns>
+   </TableView>
+   <Label layoutX="259.0" layoutY="314.0" text="Id:" />
+   <Label layoutX="249.0" layoutY="370.0" text="Name:" />
+
+
+    <Button layoutX="259.0" layoutY="423.0" mnemonicParsing="false" onAction="#onAddRoute" text="Add Route" />
+   <Button layoutX="251.0" layoutY="460.0" mnemonicParsing="false" onAction="#onUpdateRoute" text="Update Route" />
+   <Button layoutX="249.0" layoutY="497.0" mnemonicParsing="false" onAction="#onRemoveRoute" text="Remove Route" />
+
+
+    <TextField fx:id="idRouteInput" layoutX="245.0" layoutY="339.0" />
+   <TextField fx:id="nameRouteInput" layoutX="244.0" layoutY="392.0" />
+
+
+    <TableView fx:id="tableStation" layoutX="604.0" layoutY="258.0" prefHeight="268.0" prefWidth="200.0">
+        <columns>
+            <TableColumn fx:id="tableStationIdColumn" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="tableStationNameColumn" prefWidth="108.00000762939453" text="Name" />
+        </columns>
+    </TableView>
+
+    <Button layoutX="453.0" layoutY="497.0" mnemonicParsing="false" onAction="#onAddStationToRoute" text="Add Station To Route" />
+   <Button layoutX="319.0" layoutY="196.0" mnemonicParsing="false" onAction="#onNotifyTrainDelay" text="Notify Train Delay" />
+
+
+    <TextField fx:id="delayInput" layoutX="444.0" layoutY="196.0" promptText="delay ammount (min)" />
+
+    <Label fx:id="errorMessageLabel" layoutX="284.0" layoutY="245.0" prefHeight="18.0" prefWidth="257.0" text="Error." textFill="RED" visible="false" />
+   <Label layoutX="41.0" layoutY="254.0" text="Routes:" />
+   <Label layoutX="526.0" layoutY="289.0" text="Stations:" />
+   <TextField fx:id="hourOfArrivalInput" layoutX="430.0" layoutY="436.0" />
+   <TextField fx:id="hourOfDepartureInput" layoutX="430.0" layoutY="366.0" />
+   <Label layoutX="430.0" layoutY="343.0" text="HourOfArrival:" />
+   <Label layoutX="430.0" layoutY="414.0" text="HourOfDeparture:" />
+   <Label layoutX="317.0" layoutY="236.0" text="Select a route for the train" />
+
+    <Button layoutX="756.0" layoutY="10.0" mnemonicParsing="false" onAction="#onRefresh" text="Refresh" />
+
+
+</AnchorPane>

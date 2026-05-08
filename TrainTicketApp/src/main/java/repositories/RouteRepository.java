@@ -7,6 +7,7 @@ import utils.HibernateUtils;
 
 import javax.management.relation.Role;
 import java.util.List;
+import java.util.Objects;
 
 public class RouteRepository implements RouteRepositoryInterface {
 
@@ -28,17 +29,24 @@ public class RouteRepository implements RouteRepositoryInterface {
 
     @Override
     public Route save(Route entity) {
-        return null;
+        HibernateUtils.getSessionFactory().inTransaction(session -> session.persist(entity));
+        return entity;
     }
 
     @Override
-    public Route delete(Long aLong) {
-        return null;
+    public void delete(Route entity) {
+        HibernateUtils.getSessionFactory().inTransaction(session -> session.remove(entity));
     }
 
     @Override
     public Route update(Route entity) {
-        return null;
+        HibernateUtils.getSessionFactory().inTransaction(session -> {
+            if (!Objects.isNull(session.find(Route.class, entity.getId()))) {
+                session.merge(entity);
+                session.flush();
+            }
+        });
+        return entity;
     }
 
     @Override

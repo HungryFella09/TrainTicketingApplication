@@ -2,6 +2,7 @@ package domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,9 +12,8 @@ public class Route extends Entity<Long> {
 
     private String name;
 
-//    @OneToMany(mappedBy="route", cascade = CascadeType.ALL, orphanRemoval = true)
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="route_id", referencedColumnName = "id")
     private List<StationRoute> stationRoutes;
 
@@ -26,6 +26,13 @@ public class Route extends Entity<Long> {
         this.name = name;
         this.stationRoutes = stationRoutes;
     }
+
+    public Route(String name) {
+        super();
+        this.name = name;
+        this.stationRoutes = new ArrayList<>();
+    }
+
 
     public List<StationRoute> getStationRoutes() {
         return stationRoutes;

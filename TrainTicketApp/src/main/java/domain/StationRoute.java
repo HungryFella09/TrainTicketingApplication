@@ -12,7 +12,7 @@ public class StationRoute extends Entity<Long>{
 
     @Column(name = "hour_of_departure")
     private Integer hourOfDeparture;
-
+    
     @ManyToOne
     @JoinColumn(name="station_id", nullable=false)
     private Station station;
@@ -25,6 +25,13 @@ public class StationRoute extends Entity<Long>{
 
     public StationRoute(Long id, Integer hourOfArrival, Integer hourOfDeparture, Station station, Long routeId) {
         super(id);
+        this.hourOfArrival = hourOfArrival;
+        this.hourOfDeparture = hourOfDeparture;
+        this.station = station;
+        this.routeId = routeId;
+    }
+
+    public StationRoute(Integer hourOfArrival, Integer hourOfDeparture, Station station, Long routeId) {
         this.hourOfArrival = hourOfArrival;
         this.hourOfDeparture = hourOfDeparture;
         this.station = station;

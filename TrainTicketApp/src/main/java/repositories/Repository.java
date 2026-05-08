@@ -14,7 +14,7 @@ public interface Repository<ID, E extends Entity<ID>> {
 
     E save(E entity);
 
-    E delete(ID id);
+    void delete(E entity);
 
     E update(E entity);
 }

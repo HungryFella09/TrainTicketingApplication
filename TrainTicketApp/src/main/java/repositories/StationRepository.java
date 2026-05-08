@@ -27,8 +27,7 @@ public class StationRepository implements StationRepositoryInterface {
     }
 
     @Override
-    public Station delete(Long aLong) {
-        return null;
+    public void delete(Station entity) {
     }
 
     @Override

@@ -14,6 +14,7 @@ import utils.PasswordEncryptor;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.*;
 
 public class Service {
@@ -220,7 +221,7 @@ public class Service {
         try {
             sendMail(user.getEmail(), message);
         } catch (MessagingException e) {
-            System.out.println(e.getMessage());
+            logger.trace(e.getMessage());
         }
 
     }
@@ -256,8 +257,64 @@ public class Service {
         message.setText(messageToSend);
 
         Transport.send(message);
-        System.out.println("Mail successfully sent!");
+        logger.trace("Mail successfully sent!");
 
     }
+
+    public List<Route> getAllRoutes(){
+        return routeRepository.findAll();
+    }
+
+    public List<Booking> getAllBookings(){
+        return bookingRepository.findAll();
+    }
+
+    public void notifyTrainDelay(Train train, int delay){
+        List<User> usersToNotify = userRepository.findAllUsersOnTrain(train, Date.from(Instant.now()));
+        for (User user : usersToNotify){
+            String message = "Train "+ train.getName() +" has been delayed by " + delay + " minutes!";
+            try{
+                sendMail(user.getEmail(), message);
+            }
+            catch (MessagingException e){
+                logger.trace(e.getMessage());
+            }
+        }
+    }
+
+    public List<Booking> getAllBookingsByTrain(Train train){
+        return bookingRepository.bookingsOfTrain(train);
+    }
+
+    public void updateTrain(Train train){
+        trainRepository.update(train);
+    }
+
+    public void addTrain(Train train){
+        trainRepository.save(train);
+    }
+
+    public void deleteTrain(Train train){
+        trainRepository.delete(train);
+    }
+
+    public void updateRoute(Route route){
+        routeRepository.update(route);
+    }
+
+    public void addRoute(Route route){
+        routeRepository.save(route);
+    }
+
+    public void deleteRoute(Route route){
+        routeRepository.delete(route);
+    }
+
+    public void addStationToRoute(Route route, Station station, int hourOfDeparture, int hourOfArrival){
+        StationRoute stationRoute = new StationRoute(hourOfArrival, hourOfDeparture, station, route.getId());
+        route.getStationRoutes().add(stationRoute);
+        routeRepository.update(route);
+    }
+
 }
 

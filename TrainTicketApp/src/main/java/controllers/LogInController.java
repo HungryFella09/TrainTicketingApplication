@@ -35,16 +35,31 @@ public class LogInController {
         try {
             User u = service.logIn(username, password);
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../main-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
 
-            var stage = new Stage();
-            stage.setTitle("Duck Social Network");
-            stage.setScene(scene);
+            if(u.getRole()==UserRole.ADMIN){
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../admin-view.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
 
-            MainPageController controller = fxmlLoader.getController();
-            controller.setService(service, stage, u);
-            stage.show();
+                var stage = new Stage();
+                stage.setTitle("Train Tickets Admin");
+                stage.setScene(scene);
+
+                AdminController controller = fxmlLoader.getController();
+                controller.setService(service, stage, u);
+                stage.show();
+            }
+            else {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../main-view.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+
+                var stage = new Stage();
+                stage.setTitle("Train Tickets");
+                stage.setScene(scene);
+
+                MainPageController controller = fxmlLoader.getController();
+                controller.setService(service, stage, u);
+                stage.show();
+            }
 
         }
         catch (ServiceException | RepositoryException e) {
