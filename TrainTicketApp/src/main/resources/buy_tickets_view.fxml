@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="559.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TicketsController">
+
+    <TableView fx:id="tableTrains" layoutX="24.0" layoutY="54.0" prefHeight="451.0" prefWidth="318.0">
+        <columns>
+            <TableColumn fx:id="tableTrainsIdColumn" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="tableTrainsNameColumn" prefWidth="126.199951171875" text="Name" />
+            <TableColumn fx:id="tableTrainsNumberOfSeatsColumn" prefWidth="102.60003662109375" text="NumberOfSeats" />
+        </columns>
+    </TableView>
+
+
+    <TableView fx:id="tableTrainsBought" layoutX="477.0" layoutY="65.0" prefHeight="389.0" prefWidth="318.0">
+        <columns>
+            <TableColumn fx:id="tableTrainsIdColumnBought" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="tableTrainsNameColumnBought" prefWidth="126.199951171875" text="Name" />
+            <TableColumn fx:id="tableTrainsNumberOfSeatsColumnBought" prefWidth="102.60003662109375" text="NumberOfSeats" />
+        </columns>
+    </TableView>
+
+    <Button layoutX="360.0" layoutY="479.0" mnemonicParsing="false" onAction="#onAddToCart" text="+" />
+   <Label layoutX="469.0" layoutY="36.0" text="Your Cart:" />
+   <Button layoutX="675.0" layoutY="479.0" mnemonicParsing="false" onAction="#onBook" prefHeight="26.0" prefWidth="119.0" text="Book" />
+
+    <Label fx:id="errorMessageLabel" layoutX="481.0" layoutY="515.0" text="Username or Password are incorrect." textFill="RED" visible="false" />
+
+    <DatePicker fx:id="datePicker" layoutX="24.0" layoutY="511.0" />
+
+</AnchorPane>
