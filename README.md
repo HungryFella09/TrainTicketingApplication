@@ -27,9 +27,9 @@ Trains - with name and max capacity<br>
 Bookings - with an associated user and a price<br> 
 Tickets - with an associated train, booking and number of tickets<br>
 
-Passwords are encrypted before being saved in the database
+Passwords are encrypted before being saved in the database.<br>
 
-
+The repositories were implemented using hibernate.<br>
 
 
 ## Examples of inputs and outputs
