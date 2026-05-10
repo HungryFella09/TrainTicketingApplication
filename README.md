@@ -1,5 +1,5 @@
 # Train Ticketing Application
-Java application for buying tickets to trains.
+Java application for buying tickets for trains.
 
 ## Main Functionalities
 
@@ -18,14 +18,14 @@ If a user has administator rights, they get an additional tab. Here the admin ca
 
 
 ## Non functional specifications
-A database was created for storing the following entities:
-Users - with username, password, email and role (user or admin)
-Stations - with name
-Routes - with name
-Station-Routes - the table linking stations and routes, with the departure and arrival times 
-Trains - with name and max capacity
-Bookings - with an associated user and a price 
-Tickets - with an associated train, booking and number of tickets
+A database was created for storing the following entities:<br>
+Users - with username, password, email and role (user or admin)<br>
+Stations - with name<br>
+Routes - with name<br>
+Station-Routes - the table linking stations and routes, with the departure and arrival times <br>
+Trains - with name and max capacity<br>
+Bookings - with an associated user and a price<br> 
+Tickets - with an associated train, booking and number of tickets<br>
 
 Passwords are encrypted before being saved in the database
 
